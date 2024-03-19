@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IpAddress</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <center>
+      <h1>IP address</h1>
+      <input type="text" class="ipaddress" />
+      <button class="button">serach</button>
+      <div><h1 class="country"></h1></div>
+      <script>
+        let ipaddresstagcalling = document.querySelector(".ipaddress");
+        let buttontagcalling = document.querySelector(".button");
+        let countrytagcalling = document.querySelector(".country");
+        buttontagcalling.addEventListener("click", () => {
+          // https://ipapi.com/
+          fetch(
+            "https://ipapi.co/" + ipaddresstagcalling.value + "/json/"
+          ).then((res) =>
+            res.json().then((output) => {
+              console.log(output);
+              countrytagcalling.innerHTML =
+                "country name: " +
+                output.country +
+                "<br> country capital: " +
+                output.country_capital;
+            })
+          );
+        });
+      </script>
+    </center>
+  </body>
+</html>
